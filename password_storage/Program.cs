@@ -18,9 +18,9 @@ namespace password_storage
         static void Main(string[] args)
         {
             Console.Title = "password manager @sanjaykdragon";
-            Console.WriteLine("password manager by sanjaykdragon");
-            Console.WriteLine("to do: automatic DB saves, local config files, encryption");
-            Console.WriteLine("enter 1) get db, 2) save credentials");
+            Console.WriteLine("[+] password manager by sanjaykdragon");
+            Console.WriteLine("[!] to do: automatic DB saves, local config files, encryption");
+            Console.WriteLine("[+] enter 1) get db, 2) save credentials");
 
             while (true)
             {
@@ -33,7 +33,7 @@ namespace password_storage
                     var response = network.get_database();
                     if (response.status == "failed")
                     {
-                        Console.WriteLine("error occurred: {0}", response.detail);
+                        Console.WriteLine("[!] error occurred: {0}", response.detail);
                     }
                     else
                     {
@@ -42,31 +42,32 @@ namespace password_storage
                             string decrypted_site = item.site;
                             string decrypted_username = item.username;
                             string decrypted_password = item.password;
-                            Console.WriteLine("site: {0}, username: {1}, password: {2}", decrypted_site, decrypted_username, decrypted_password);
+                            string cleaned_date = FromUnixTime((long)item.time).ToLocalTime().ToString();
+                            Console.WriteLine("[+] site: {0}, username: {1}, password: {2} added on {3}", decrypted_site, decrypted_username, decrypted_password, cleaned_date);
                         }
                     }
                 }
                 else if (first_char == '2' || first_char == 's')
                 {
                     //save creds
-                    Console.WriteLine("enter the name of the site: ");
+                    Console.WriteLine("[+] enter the name of the site: ");
                     string site = Console.ReadLine();
-                    Console.WriteLine("enter the username for this site: ");
+                    Console.WriteLine("[+] enter the username for this site: ");
                     string username = Console.ReadLine();
-                    Console.WriteLine("enter the password for this site: ");
+                    Console.WriteLine("[+] enter the password for this site: ");
                     string password = Console.ReadLine();
 
                     var response = network.send_credentials(username, password, site);
                     if (response.status == "failed")
                     {
-                        Console.WriteLine("error occurred: {0}", response.detail);
+                        Console.WriteLine("[!] error occurred: {0}", response.detail);
                     }
                     else
                     {
-                        Console.WriteLine("added to db successfully");
+                        Console.WriteLine("[+] added to db successfully!");
                     }
                 }
-                Console.WriteLine("enter 1) get db, 2) save credentials");
+                Console.WriteLine("[+] enter 1) get db, 2) save credentials");
             }
         }
     }
