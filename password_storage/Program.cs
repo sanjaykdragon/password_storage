@@ -20,8 +20,8 @@ namespace password_storage
         static void Main(string[] args)
         {
             Console.Title = "password manager @sanjaykdragon";
-            Console.WriteLine("[+] password manager by sanjaykdragon");
-            Console.WriteLine("[!] to do: automatic DB saves, local config files, encryption");
+            Console.WriteLine("[+] password manager by @sanjaykdragon on github");
+            Console.WriteLine("[!] to do: automatic DB saves, encryption");
 
             if (!File.Exists("config.pwm"))
             {
