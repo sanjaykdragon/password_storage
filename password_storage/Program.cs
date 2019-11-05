@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace password_storage
 {
@@ -20,6 +22,29 @@ namespace password_storage
             Console.Title = "password manager @sanjaykdragon";
             Console.WriteLine("[+] password manager by sanjaykdragon");
             Console.WriteLine("[!] to do: automatic DB saves, local config files, encryption");
+
+            if (!File.Exists("config.pwm"))
+            {
+                Console.WriteLine("[!] config file does not exist.");
+                Console.WriteLine("[+] enter the base url for the server (ex: http://localhost/)");
+                network.base_url = Console.ReadLine();
+                Console.WriteLine("[+] enter encryption password");
+                string encryption_pass = Console.ReadLine();
+
+                Dictionary<string, string> config_dict = new Dictionary<string, string>();
+
+                config_dict.Add("url", network.base_url);
+                config_dict.Add("enc_pass", encryption_pass);
+
+                File.WriteAllText("config.pwm", JsonConvert.SerializeObject(config_dict));
+            }
+            else
+            {
+                Console.WriteLine("[+] found config.pwm, using");
+                dynamic config = JsonConvert.DeserializeObject(File.ReadAllText("config.pwm"));
+                network.base_url = config.url;
+            }
+
             Console.WriteLine("[+] enter 1) get db, 2) save credentials");
 
             while (true)
