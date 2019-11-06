@@ -31,17 +31,18 @@ namespace password_storage
                 Console.WriteLine("[+] enter encryption password");
                 string encryption_pass = Console.ReadLine();
 
-                Dictionary<string, string> config_dict = new Dictionary<string, string>();
+                Dictionary<string, string> config_dict = new Dictionary<string, string>
+                {
+                    {"url", network.base_url}, {"enc_pass", encryption_pass}
+                };
 
-                config_dict.Add("url", network.base_url);
-                config_dict.Add("enc_pass", encryption_pass);
 
-                File.WriteAllText("config.pwm", JsonConvert.SerializeObject(config_dict));
+                File.WriteAllText("config.pwm", JsonConvert.SerializeObject(config_dict)); //save above to config
             }
             else
             {
                 Console.WriteLine("[+] found config.pwm, using");
-                dynamic config = JsonConvert.DeserializeObject(File.ReadAllText("config.pwm"));
+                dynamic config = JsonConvert.DeserializeObject(File.ReadAllText("config.pwm")); //read config
                 network.base_url = config.url;
             }
 

@@ -17,7 +17,6 @@ namespace password_storage
             using (WebClient web = new WebClient())
             {
                 web.Proxy = null;
-                web.Headers.Add("user-agent", "VER$ACE");
                 NameValueCollection values = new NameValueCollection
                 {
                     ["option"] = "save",
@@ -40,7 +39,6 @@ namespace password_storage
             using (WebClient web = new WebClient())
             {
                 web.Proxy = null;
-                web.Headers.Add("user-agent", "VER$ACE");
                 NameValueCollection values = new NameValueCollection
                 {
                     ["option"] = "get_list"
