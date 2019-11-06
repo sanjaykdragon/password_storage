@@ -20,9 +20,9 @@ namespace password_storage
                 NameValueCollection values = new NameValueCollection
                 {
                     ["option"] = "save",
-                    ["username"] = username,
-                    ["password"] = password,
-                    ["site"] = site
+                    ["username"] = encryption.encrypt_text(username),
+                    ["password"] = encryption.encrypt_text(password),
+                    ["site"] = encryption.encrypt_text(site)
                 };
 
                 byte[] response_array = web.UploadValues(base_url + "test.php", values);

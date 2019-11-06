@@ -29,11 +29,11 @@ namespace password_storage
                 Console.WriteLine("[+] enter the base url for the server (ex: http://localhost/)");
                 network.base_url = Console.ReadLine();
                 Console.WriteLine("[+] enter encryption password");
-                string encryption_pass = Console.ReadLine();
+                encryption.encryption_key = Console.ReadLine();
 
                 Dictionary<string, string> config_dict = new Dictionary<string, string>
                 {
-                    {"url", network.base_url}, {"enc_pass", encryption_pass}
+                    {"url", network.base_url}, {"enc_pass", encryption.encryption_key}
                 };
 
 
@@ -41,9 +41,30 @@ namespace password_storage
             }
             else
             {
-                Console.WriteLine("[+] found config.pwm, using");
-                dynamic config = JsonConvert.DeserializeObject(File.ReadAllText("config.pwm")); //read config
-                network.base_url = config.url;
+                Console.WriteLine("[+] found config.pwm, should we use? (y)es (n)o");
+                var user_response = Console.ReadKey();
+                Console.WriteLine(); //start printing from the next line
+                if (user_response.Key == ConsoleKey.Y)
+                {
+                    dynamic config = JsonConvert.DeserializeObject(File.ReadAllText("config.pwm")); //read config
+                    network.base_url = config.url;
+                    encryption.encryption_key = config.enc_pass;
+                }
+                else
+                {
+                    Console.WriteLine("[+] enter the base url for the server (ex: http://localhost/)");
+                    network.base_url = Console.ReadLine();
+                    Console.WriteLine("[+] enter encryption password");
+                    encryption.encryption_key = Console.ReadLine();
+
+                    Dictionary<string, string> config_dict = new Dictionary<string, string>
+                    {
+                        {"url", network.base_url}, {"enc_pass", encryption.encryption_key}
+                    };
+
+
+                    File.WriteAllText("config.pwm", JsonConvert.SerializeObject(config_dict));
+                }
             }
 
             Console.WriteLine("[+] enter 1) get db, 2) save credentials");
@@ -65,9 +86,9 @@ namespace password_storage
                     {
                         foreach (var item in response.values)
                         {
-                            string decrypted_site = item.site;
-                            string decrypted_username = item.username;
-                            string decrypted_password = item.password;
+                            string decrypted_site = encryption.decrypt_text((string)item.site);
+                            string decrypted_username = encryption.decrypt_text((string)item.username);
+                            string decrypted_password = encryption.decrypt_text((string)item.password);
                             string cleaned_date = FromUnixTime((long)item.time).ToLocalTime().ToString();
                             Console.WriteLine("[+] site: {0}, username: {1}, password: {2} added on {3}", decrypted_site, decrypted_username, decrypted_password, cleaned_date);
                         }
