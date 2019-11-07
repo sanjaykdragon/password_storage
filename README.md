@@ -2,7 +2,9 @@
 
 ### table of contents
 [description](#description)
+
 [how it works](#how-it-works)
+
 [disclaimer](#disclaimer)
 
 ### description
