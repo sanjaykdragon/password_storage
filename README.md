@@ -3,11 +3,11 @@
 ### table of contents
 [description](#description)
 
+[setup](#setup)
+
 [how it works](#how-it-works)
 
 [disclaimer](#disclaimer)
-
-[setup](#setup)
 
 ### description
 simple encrypted password storage
