@@ -17,21 +17,15 @@ namespace password_storage
 
             config.handle_config_detection();
 
-            Console.WriteLine("[+] enter 1) get db, 2) save credentials");
+            Console.WriteLine("[+] enter 1) get db, 2) save credentials, 3) clear console");
 
             while (true)
             {
                 string input = Console.ReadLine();
                 char first_char = input.Length > 0 ? input.ToLower().ToCharArray()[0] : ' ';
 
-                if (first_char == '1' || first_char == 'g')
-                {
-                    db_control.get_database();
-                }
-                else if (first_char == '2' || first_char == 's')
-                {
-                    db_control.save_credentials();
-                }
+                db_control.handle_input(first_char);
+
                 Console.WriteLine("[+] enter 1) get db, 2) save credentials");
             }
         }

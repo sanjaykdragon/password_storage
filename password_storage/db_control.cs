@@ -16,7 +16,7 @@ namespace password_storage
             var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
             return epoch.AddSeconds(unix_time);
         }
-        public static void get_database()
+        private static void get_database()
         {
             //get db
             var response = network.get_database();
@@ -37,7 +37,7 @@ namespace password_storage
             }
         }
 
-        public static void save_credentials()
+        private static void save_credentials()
         {
             //save creds
             Console.WriteLine("[+] enter the name of the site: ");
@@ -55,6 +55,27 @@ namespace password_storage
             else
             {
                 Console.WriteLine("[+] added to db successfully!");
+            }
+        }
+
+        public static void handle_input(char input)
+        {
+
+            if (input == '1' || input == 'g')
+            {
+                get_database();
+            }
+            else if (input == '2' || input == 's')
+            {
+                save_credentials();
+            }
+            else if (input == '3' || input == 'c')
+            {
+                Console.Clear();
+            }
+            else
+            {
+                Console.WriteLine("[!] invalid command. try again.");
             }
         }
     }

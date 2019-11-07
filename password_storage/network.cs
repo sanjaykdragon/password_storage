@@ -10,7 +10,7 @@ namespace password_storage
 {
     class network
     {
-        public static string base_url = "http://localhost/"; //change this
+        public static string base_url = "http://localhost/"; //this is changed by config file
         public static dynamic send_credentials(string username, string password, string site)
         {
             string response_string = string.Empty;

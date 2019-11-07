@@ -7,8 +7,8 @@ namespace password_storage
 {
     class encryption
     {
-        //this is a wrapper class for EasyEncryption (nuget package)
-        public static string encryption_key = "NO_ENCRYPTION_KEY";
+        //this is a wrapper class for EasyEncryption (nuget package) - an external library
+        public static string encryption_key = "NO_ENCRYPTION_KEY"; //this is replaced by config file - placeholder value
         public static string encrypt_text(string plain_text)
         {
             return EasyEncryption.AesThenHmac.SimpleEncryptWithPassword(plain_text, encryption_key);
