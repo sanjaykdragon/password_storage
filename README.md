@@ -15,7 +15,11 @@ simple encrypted password storage
 ### setup
 step 1. modify test.php to your needs (change mysql server username, password, and dbname (and host if necessary).
 
+step 1.5. modify backup.php to your needs
+
 step 2. import sql setup file to your database.
+
+step 2.5. setup cron script to call backup.php every few days
 
 step 3. setup local C# client (point to http://yoursite.com/)
 
