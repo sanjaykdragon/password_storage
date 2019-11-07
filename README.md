@@ -15,9 +15,11 @@ simple encrypted password storage
 ### setup
 step 1. modify test.php to your needs (change mysql server username, password, and dbname (and host if necessary).
 
-step 2. setup local C# client (point to http://yoursite.com/)
+step 2. import sql setup file to your database.
 
-step 3. done, DO NOT LOSE ENCRYPTION KEY, IT IS UNRECOVERABLE!
+step 3. setup local C# client (point to http://yoursite.com/)
+
+step 4. done, DO NOT LOSE ENCRYPTION KEY, IT IS UNRECOVERABLE!
 
 ### how it works
 All encryption / decryption is done client side, which prevents MITM hacks and database leaks.
