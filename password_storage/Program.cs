@@ -26,7 +26,7 @@ namespace password_storage
 
                 db_control.handle_input(first_char);
 
-                Console.WriteLine("[+] enter 1) get db, 2) save credentials");
+                Console.WriteLine("[+] enter 1) get db, 2) save credentials, 3) clear console");
             }
         }
     }
