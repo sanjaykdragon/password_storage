@@ -1,7 +1,9 @@
 # password_storage
 
 ### table of contents
-[description]["#description"]
+[description](#description)
+[how it works](#how-it-works)
+[disclaimer](#disclaimer)
 
 ### description
 simple encrypted password storage
