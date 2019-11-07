@@ -13,7 +13,7 @@ namespace password_storage
         {
             Console.Title = "password manager @sanjaykdragon";
             Console.WriteLine("[+] password manager by @sanjaykdragon on github");
-            Console.WriteLine("[!] to do: automatic DB saves, search db clientside for specific values");
+            Console.WriteLine("[!] to do: search db clientside for specific values");
 
             config.handle_config_detection();
 

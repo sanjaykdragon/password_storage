@@ -1,15 +1,4 @@
 <?php
-
-    
-    function send_email($title, $log_message)
-    {
-    $receiving_email = "sanjaykdragon@gmail.com";
-    $headers = 'From: ' . 'mailer@password_mgr.gov' . "\r\n" .
-        'Reply-To: ' . $receiving_email . "\r\n" .
-        'X-Mailer: PHP/' . phpversion();
-    @mail($receiving_email, $title, $log_message, $headers);
-    }
-
     $server_username = "root";
     $server_password = "";
     $server_dbname = "pw_mgr";
