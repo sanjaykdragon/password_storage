@@ -10,7 +10,7 @@
 [disclaimer](#disclaimer)
 
 ### description
-simple encrypted password storage
+simple command line encrypted password storage
 
 ### setup
 step 1. modify test.php to your needs (change mysql server username, password, and dbname (and host if necessary).
